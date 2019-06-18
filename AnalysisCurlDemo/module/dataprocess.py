@@ -39,3 +39,7 @@ def fillDateAndVal(excelDictArr):
     print(len(resultArr))
 
     return resultArr
+
+
+def mergedata(step):
+    
