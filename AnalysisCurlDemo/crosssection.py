@@ -5,7 +5,7 @@ import numpy as np
 
 
 def main():
-    dataframe = pd.read_csv('data/crosssection.csv', encoding='gbk')
+    dataframe = pd.read_csv('data/raw/crosssection.csv', encoding='gbk')
     valList = list(dataframe['值'].values)
 
     step = 10

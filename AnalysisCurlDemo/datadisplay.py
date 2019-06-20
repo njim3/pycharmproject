@@ -68,9 +68,9 @@ def displayAllData(currentArr, kilnendArr, kilnBackendArr):
 
 
 def main():
-    currentArr = readDataFromExcelFile("dataprocessed/窑主机电流.xls", 1, 10116)
-    kilnendArr = readDataFromExcelFile("dataprocessed/窑头温度.xls", 1, 10116)
-    kilnBackendArr = readDataFromExcelFile("dataprocessed/窑尾温度.xls", 1, 10116)
+    currentArr = readDataFromExcelFile("data/processed/窑主机电流.xls", 1, 10116)
+    kilnendArr = readDataFromExcelFile("data/processed/窑头温度.xls", 1, 10116)
+    kilnBackendArr = readDataFromExcelFile("data/processed/窑尾温度.xls", 1, 10116)
 
     displayAllData(currentArr, kilnendArr, kilnBackendArr)
 

@@ -41,5 +41,34 @@ def fillDateAndVal(excelDictArr):
     return resultArr
 
 
-def mergedata(step):
-    
+def mergedata(dateValArr, step):
+    dateArr = []
+    dataArr = []
+
+    for dic in dateValArr:
+        dateArr.append(list(dic.keys())[0])
+        dataArr.append(float(list(dic.values())[0]))
+
+    # find the proper value
+    mergedLen = len(dataArr)
+    while mergedLen % step:
+        mergedLen -= 1
+
+    mergedDataArr = []
+    tempSum = 0
+
+    for i in range(0, mergedLen):
+        if i != 0 and i % step == 0:
+            mergedDataArr.append(float(tempSum / step))
+            tempSum = 0
+
+        tempSum += dataArr[i]
+
+    mergedDataArr.append(float(tempSum) / step)
+
+    mergedDateArr = []
+
+    for i in range(0, len(mergedDataArr)):
+        mergedDateArr.append(dateArr[int(step / 2 + i * step)])
+
+    return (dateArr, dataArr), (mergedDateArr, mergedDataArr)

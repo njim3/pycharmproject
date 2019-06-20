@@ -2,14 +2,16 @@
 import numpy as np
 
 
-def getpolycurve(dataarr, degree):
-    coe = np.polyfit(range(0, len(dataarr)), dataarr, degree)
+def getpolycurve(dataarr, degree, step):
+    xarr = range(int(step / 2), len(dataarr) * step, step)
+
+    coe = np.polyfit(xarr, dataarr, degree)
     p = np.poly1d(coe)
 
     return p
 
 
-def getpolyrealroots(p, start, end):
+def getpolyderealroots(p, start, end):
     pder = np.polyder(p)
 
     rootndArray = np.sort(np.roots(pder))
@@ -45,6 +47,19 @@ def getincanddecsec(p, rootlist):
     return incSecList, decSecList
 
 
+def getincanddecfitdate(incseclist, decseclist, datearr):
+    incsecDateArr = []
+    decsecDateArr = []
+
+    for inc in incseclist:
+        incsecDateArr.append([datearr[int(inc[0])], datearr[int(inc[1])]])
+
+    for dec in decseclist:
+        decsecDateArr.append([datearr[int(inc[0])], datearr[int(dec[1])]])
+
+    return incsecDateArr, decsecDateArr
+
+
 def getpolylineinsec(p, rootlist, start, end):
     rootlist.append(start)
     rootlist.append(end)
@@ -61,3 +76,28 @@ def getpolylineinsec(p, rootlist, start, end):
         polylineArr.append(tempp)
 
     return polylineArr
+
+
+def getpolylineinincdecsec(p, incseclist, decseclist):
+    incPolylineArr = []
+    decPolylineArr = []
+
+    for inc in incseclist:
+        tempX = range(int(inc[0]), int(inc[1]))
+        tempY = p(tempX)
+
+        tempz = np.polyfit(tempX, tempY, 1)
+        tempp = np.poly1d(tempz)
+
+        incPolylineArr.append(tempp)
+
+    for dec in decseclist:
+        tempX = range(int(dec[0]), int(dec[1]))
+        tempY = p(tempX)
+
+        tempz = np.polyfit(tempX, tempY, 1)
+        tempp = np.poly1d(tempz)
+
+        decPolylineArr.append(tempp)
+
+    return incPolylineArr, decPolylineArr
