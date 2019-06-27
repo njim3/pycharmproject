@@ -1,19 +1,6 @@
 # coding: utf-8
+import numpy as np
 
+p = np.poly1d([2, 3])
 
-def passarg(arg1, arg2, arg3=()):
-    if not arg3:
-        print('empty')
-
-
-passarg(1, 2)
-
-
-def return2res():
-    x = 1
-    y = 2
-
-    return x, y
-
-
-print(return2res())
+print(p.coefficients[0])

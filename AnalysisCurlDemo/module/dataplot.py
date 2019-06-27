@@ -33,6 +33,9 @@ def plot2linecurveandpolylinesec(dataArr, mergedDataArr, step,
                                  incsecList, decsecList,
                                  incPolylineArr, decPolylineArr,
                                  pFunc):
+    plt.ion()
+    plt.figure()
+
     xArr = range(0, len(dataArr))
     xMergedArr = range(int(step / 2), len(mergedDataArr) * step, step)
 
@@ -51,5 +54,9 @@ def plot2linecurveandpolylinesec(dataArr, mergedDataArr, step,
         tempp = decPolylineArr[i]
 
         plt.plot(tempx, tempp(tempx), linewidth=2)
+
+
+def showplot():
+    plt.ioff()
 
     plt.show()

@@ -27,11 +27,14 @@ def getpolyderealroots(p, start, end):
     return rootList
 
 
-def getincanddecsec(p, rootlist):
+def getincanddecsec(p, rootlist, start, end):
     pder = np.polyder(p)
 
     incSecList = []
     decSecList = []
+
+    rootlist.insert(start, 0)
+    rootlist.append(end)
 
     for i in range(1, len(rootlist)):
         sec = [rootlist[i - 1], rootlist[i]]
@@ -55,7 +58,7 @@ def getincanddecfitdate(incseclist, decseclist, datearr):
         incsecDateArr.append([datearr[int(inc[0])], datearr[int(inc[1])]])
 
     for dec in decseclist:
-        decsecDateArr.append([datearr[int(inc[0])], datearr[int(dec[1])]])
+        decsecDateArr.append([datearr[int(dec[0])], datearr[int(dec[1])]])
 
     return incsecDateArr, decsecDateArr
 
